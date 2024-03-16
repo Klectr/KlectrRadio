@@ -16,7 +16,7 @@ export function App() {
   const [avatarRef, avatarUrl,] = useModel<HTMLInputElement, string>('')
   const [selectedStation, setSelectedStation] = useState<Station | null>(null)
   const appDataDirRef = useRef<string>(null)
-  //testforcommit
+
   useEffect(() => {
     appDataDir()
       .then(async (res) => {
