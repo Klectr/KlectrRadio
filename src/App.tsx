@@ -72,17 +72,28 @@ export function App() {
       )
     }
     return (
-      <div className="p-4 flex flex-col align-between h-full gap-2">
-        {stations.map((s) => (
-          <button onclick={_handleStationClick(s)} className="paper p-2 flex flex-row border gap-4">
-            <img src={s.avatar} width={40} height={40} className="w-20 rounded-xl" />
-            <div className="flex flex-col gap-2 w-full">
-              <h2 className="text-xl">{s.title}</h2>
-              <button className="border border-red-500 rounded w-full text-red-500 px-4">Delete</button>
-            </div>
+      <div>
+        <div className="flex justify-end">
+          <button className="mr-4 px-2 py-1 hover:bg-gray-300 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
           </button>
-        ))}
-        <button className="bg-white rounded-xl p-2" onclick={() => setNavitation(1)}>+</button>
+        </div>
+
+
+        <div className="p-4 flex flex-col align-between h-full gap-2">
+          {stations.map((s) => (
+            <button onclick={_handleStationClick(s)} className="paper p-2 flex flex-row border gap-4">
+              <img src={s.avatar} width={40} height={40} className="w-20 rounded-xl" />
+              <div className="flex flex-col gap-2 w-full">
+                <h2 className="text-xl">{s.title}</h2>
+                <button className="border border-red-500 rounded w-full text-red-500 px-4">Delete</button>
+              </div>
+            </button>
+          ))}
+          <button className="bg-white rounded-xl p-2" onclick={() => setNavitation(1)}>+</button>
+        </div>
       </div>
     )
 
@@ -90,9 +101,13 @@ export function App() {
 
   if (nav === Navs.ADD) {
     return (
-      <div className="flex flex-col gap-3 p-2">
-        <button className="mr-auto px-2" onclick={() => setNavitation(0)}>Back</button>
-        <div className="flex flex-col gap-2">
+      <div >
+        <button onclick={() => setNavitation(0)} className="ml-2 px-2 py-1 hover:bg-gray-300 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+        <div className="flex flex-col gap-3 p-2">
           <input ref={titleRef} className="rounded p-1" ariaLabel={"title"} placeholder="Title" />
           <input ref={streamRef} className="rounded p-1" ariaLabel={"url"} placeholder="Stream URL" />
           <input ref={avatarRef} className="rounded p-1" ariaLabel={"avatar"} placeholder="Image URL" />
@@ -109,12 +124,16 @@ export function App() {
 
   if (nav === Navs.PLAYER) {
     return (
-      <div className="bg-gray-100">
-        <button onclick={_handlePlayerBackClick} className="px-2">Back</button>
-        <div className="bg-gray-100 p-4 flex justify-center">
-          <div className="paper p-8 w-80">
+      <div >
+        <button onclick={_handlePlayerBackClick} className="ml-2 px-2 py-1 hover:bg-gray-300 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+        <div className="flex justify-center">
+          <div className="p-8 w-80">
             {/*<!-- Album Cover -->*/}
-            <img src={selectedStation?.avatar} alt={selectedStation?.title} className="w-64 h-64 mx-auto rounded-lg mb-4 shadow-lg shadow-teal-50" />
+            <img src={selectedStation?.avatar} alt={selectedStation?.title} className="w-64 h-64 mx-auto rounded-lg mb-4 shadow-md shadow-black-200" />
             {/*<!-- Song Title -->*/}
             <h2 className="text-xl font-semibold text-center">{selectedStation?.title}</h2>
             {/*<!-- Artist Name -->*/}
