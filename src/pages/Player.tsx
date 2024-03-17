@@ -1,13 +1,13 @@
-import { Navs, useNavigator } from "../hooks/useNavigator"
-import { useStationsProvider } from "../providers/StationsProvider"
+import useNavigationStore, { Navs } from "../hooks/navigationStores"
+import { useSelectStationStore } from "../hooks/stationStores"
 
 export default function Player() {
-  const { setNavitation } = useNavigator()
-  const { setSelectedStation, selectedStation } = useStationsProvider()
+  const { value: selectedStation, make } = useSelectStationStore()
+  const { navigate } = useNavigationStore()
 
   function _handlePlayerBackClick() {
-    setNavitation(Navs.MAIN)
-    setSelectedStation(null)
+    navigate(Navs.MAIN)
+    make(null)
   }
 
   return (

@@ -1,35 +1,31 @@
 import { writeTextFile } from "@tauri-apps/api/fs"
-import { Navs, useNavigator } from "../hooks/useNavigator"
-import { Station, useStationsProvider } from "../providers/StationsProvider"
 import { useModel } from "kaioken"
-import { useStorageContext } from "../providers/StorageProvider"
+import { Station, useStationsStore } from "../hooks/stationStores"
+import { useStorageStore } from "../hooks/storageStores"
+import useNavigationStore, { Navs } from "../hooks/navigationStores"
 
 export default function Add() {
-  const { setNavitation } = useNavigator()
-  const { setStations } = useStationsProvider()
-  const { appDataDirRef } = useStorageContext()
+  const { value } = useStorageStore()
   const [titleRef, title,] = useModel<HTMLInputElement, string>('')
   const [streamRef, streamUrl,] = useModel<HTMLInputElement, string>('')
   const [avatarRef, avatarUrl,] = useModel<HTMLInputElement, string>('')
 
   function _handleStationAdd() {
     const data: Station = {
+      id: Math.random().toString(16).slice(2),
       url: streamUrl,
       avatar: avatarUrl,
       title: title
     }
-    setStations(prev => {
-      const newStations = [...(prev ?? []), data]
-      // write file
-      writeTextFile(appDataDirRef.current!, JSON.stringify(newStations))
-      return newStations
-    })
-    setNavitation(Navs.MAIN)
+    const store = useStationsStore.methods.add(data)
+    const valid = store && value
+    valid && void writeTextFile(value, JSON.stringify(store))
+    useNavigationStore.setState(Navs.MAIN)
   }
 
   return (
     <div >
-      <button onclick={() => setNavitation(0)} className="ml-2 px-2 py-1 hover:bg-gray-300 rounded-full">
+      <button onclick={() => useNavigationStore.setState(Navs.MAIN)} className="ml-2 px-2 py-1 hover:bg-gray-300 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
         </svg>

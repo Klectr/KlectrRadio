@@ -1,23 +1,24 @@
-import { Navs, useNavigator } from "./hooks/useNavigator"
 import { useEffect } from "kaioken"
-import { useStationsProvider } from "./providers/StationsProvider"
 import Main from "./pages/Main"
 import Player from "./pages/Player"
-import { useStorageContext } from "./providers/StorageProvider"
 import Add from "./pages/Add"
+import useNavigationStore, { Navs } from "./hooks/navigationStores"
+import { useStorage } from "./hooks/storageStores"
+import { useStationsStore } from "./hooks/stationStores"
 
 export function App() {
-  const { setStations } = useStationsProvider()
-  const { getStationsFile } = useStorageContext()
-  const { nav } = useNavigator()
+  const { getStationsFile } = useStorage()
+  const { override } = useStationsStore()
+  const { value } = useNavigationStore()
 
   useEffect(() => {
     getStationsFile()
-      .then(res => res && setStations(res))
+      .then(res => res && override(res))
       .catch()
   }, [])
 
-  switch (nav) {
+
+  switch (value) {
     case Navs.MAIN:
       return <Main />
     case Navs.ADD:
