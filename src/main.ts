@@ -1,6 +1,6 @@
-import "./styles.css";
-import { mount } from "kaioken";
-import { App } from "./App";
+import { App } from "./App"
+import "./styles.css"
+import { mount } from "kaioken"
 
-const root = document.getElementById("root")!;
-mount(App, root);
+const root = document.getElementById("root")!
+mount(App, root)
