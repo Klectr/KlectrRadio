@@ -7,7 +7,7 @@
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "big-word",
+    "productName": "KlectrRadio",
     "version": "0.0.1"
   },
   "tauri": {
@@ -33,10 +33,11 @@
     },
     "windows": [
       {
-        "title": "big-word",
+        "title": "KlectrRadio",
         "width": 300,
         "height": 600,
-        "decorations": false
+        "decorations": false,
+        "resizable": false
       }
     ],
     "security": {
