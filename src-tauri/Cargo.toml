@@ -1,5 +1,5 @@
 [package]
-name = "KlectrRadio"
+name = "klectr_radio"
 version = "0.1.0"
 description = "Your own personal radio app for Klecting the stations you love"
 authors = ["you"]
