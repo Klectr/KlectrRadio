@@ -10,7 +10,11 @@ export default function Main() {
     make(station)
     navigate('/player')
   }
+function handler_delete(id:string){
+  // Remove the station from the store based on its ID
+  useStationsStore.method.remove(id)
 
+}
   if (!stations?.length) {
     return (
       <div className="p-4 flex flex-col align-between h-full gap-2">
@@ -37,7 +41,8 @@ export default function Main() {
             <img src={s.avatar} width={40} height={40} className="w-20 rounded-xl" />
             <div className="flex flex-col gap-2 w-full">
               <h2 className="text-xl">{s.title}</h2>
-              <button className="border border-red-500 rounded w-full text-red-500 px-4">Delete</button>
+
+              <button onClick={()=>handler_delete(s.id)} className="border border-red-500 rounded w-full text-red-500 px-4">Delete</button>
             </div>
           </button>
         ))}
