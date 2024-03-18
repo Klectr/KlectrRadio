@@ -1,12 +1,11 @@
-import useNavigationStore, { Navs } from "../hooks/navigationStores"
+import { navigate } from "kaioken"
 import { useSelectStationStore } from "../hooks/stationStores"
 
 export default function Player() {
   const { value: selectedStation, make } = useSelectStationStore()
-  const { navigate } = useNavigationStore()
 
   function _handlePlayerBackClick() {
-    navigate(Navs.MAIN)
+    navigate('/')
     make(null)
   }
 

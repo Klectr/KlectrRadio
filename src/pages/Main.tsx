@@ -1,22 +1,21 @@
-import useNavigationStore, { Navs } from "../hooks/navigationStores"
+import { navigate } from "kaioken"
 import { Station, useSelectStationStore } from "../hooks/stationStores"
 import { useStationsStore } from "../hooks/stationStores"
 
 export default function Main() {
   const { make } = useSelectStationStore()
-  const { navigate } = useNavigationStore()
   const stations = useStationsStore.getState()
 
   function _handleStationClick(station: Station) {
     make(station)
-    navigate(Navs.PLAYER)
+    navigate('/player')
   }
 
   if (!stations?.length) {
     return (
       <div className="p-4 flex flex-col align-between h-full gap-2">
         <h2 className="text-black text-opacity-50 font-bold text-center">No Stations Added</h2>
-        <button className="bg-white rounded-xl p-2" onclick={() => navigate(Navs.ADD)}>+</button>
+        <button className="bg-white rounded-xl p-2" onclick={() => navigate('/add')}>+</button>
       </div>
     )
   }
@@ -42,7 +41,7 @@ export default function Main() {
             </div>
           </button>
         ))}
-        <button className="bg-white rounded-xl p-2" onclick={() => navigate(Navs.ADD)}>+</button>
+        <button className="bg-white rounded-xl p-2" onclick={() => navigate('/add')}>+</button>
       </div>
     </div>
   )

@@ -1,15 +1,13 @@
-import { useEffect } from "kaioken"
+import { Route, Router, useEffect } from "kaioken"
 import Main from "./pages/Main"
-import Player from "./pages/Player"
-import Add from "./pages/Add"
-import useNavigationStore, { Navs } from "./hooks/navigationStores"
 import { useStorage } from "./hooks/storageStores"
 import { useStationsStore } from "./hooks/stationStores"
+import Add from "./pages/Add"
+import Player from "./pages/Player"
 
 export function App() {
   const { getStationsFile } = useStorage()
   const { override } = useStationsStore()
-  const { value } = useNavigationStore()
 
   useEffect(() => {
     getStationsFile()
@@ -17,16 +15,12 @@ export function App() {
       .catch()
   }, [])
 
-
-  switch (value) {
-    case Navs.MAIN:
-      return <Main />
-    case Navs.ADD:
-      return <Add />
-    case Navs.PLAYER:
-      return <Player />
-    default:
-      return <h1>404 Not Found</h1>
-  }
+  return (
+    <Router basePath="">
+      <Route path="/" element={Main} />
+      <Route path="/add" element={Add} />
+      <Route path="/player" element={Player} />
+    </Router>
+  )
 }
 
