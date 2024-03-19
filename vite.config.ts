@@ -1,5 +1,6 @@
-import { defineConfig } from "vite";
-import kaioken from "vite-plugin-kaioken";
+/// <reference types="vitest" />
+import { defineConfig } from "vite"
+import kaioken from "vite-plugin-kaioken"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,4 +26,10 @@ export default defineConfig({
       ignored: ["**/src-tauri/**"],
     },
   },
-});
+  envPrefix: ["VITE_", "TAURI_"],
+  test: {
+    exclude: ["src-tauri/**/*", "node_modules"],
+    globals: true,
+    environment: "jsdom",
+  },
+})
