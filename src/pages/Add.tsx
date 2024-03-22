@@ -1,24 +1,24 @@
-import { writeTextFile } from "@tauri-apps/api/fs"
-import { navigate, useModel } from "kaioken"
-import { Station, useStationsStore } from "../hooks/stationStores"
-import { useStorageStore } from "../hooks/storageStores"
+import { writeTextFile } from '@tauri-apps/api/fs'
+import { navigate, useModel } from 'kaioken'
+import { type Station, useStationsStore } from '../hooks/stationStores'
+import { useStorageStore } from '../hooks/storageStores'
 
-export default function Add() {
+export default function Add(): JSX.Element {
   const { value } = useStorageStore()
-  const [titleRef, title,] = useModel<HTMLInputElement, string>('')
-  const [streamRef, streamUrl,] = useModel<HTMLInputElement, string>('')
-  const [avatarRef, avatarUrl,] = useModel<HTMLInputElement, string>('')
+  const [titleRef, title] = useModel<HTMLInputElement, string>('')
+  const [streamRef, streamUrl] = useModel<HTMLInputElement, string>('')
+  const [avatarRef, avatarUrl] = useModel<HTMLInputElement, string>('')
 
-  function _handleStationAdd() {
+  function _handleStationAdd(): void {
     const data: Station = {
       id: Math.random().toString(16).slice(2),
       url: streamUrl,
       avatar: avatarUrl,
-      title: title
+      title
     }
     const store = useStationsStore.methods.add(data)
-    const valid = store && value
-    valid && void writeTextFile(value, JSON.stringify(store))
+    const valid = store?.length && value
+    !!valid && void writeTextFile(value, JSON.stringify(store))
     navigate('/')
   }
 
@@ -30,9 +30,9 @@ export default function Add() {
         </svg>
       </button>
       <div className="flex flex-col gap-3 p-2">
-        <input ref={titleRef} className="rounded p-1" ariaLabel={"title"} placeholder="Title" />
-        <input ref={streamRef} className="rounded p-1" ariaLabel={"url"} placeholder="Stream URL" />
-        <input ref={avatarRef} className="rounded p-1" ariaLabel={"avatar"} placeholder="Image URL" />
+        <input ref={titleRef} className="rounded p-1" ariaLabel={'title'} placeholder="Title" />
+        <input ref={streamRef} className="rounded p-1" ariaLabel={'url'} placeholder="Stream URL" />
+        <input ref={avatarRef} className="rounded p-1" ariaLabel={'avatar'} placeholder="Image URL" />
         <button onclick={_handleStationAdd} className="rounded bg-blue-400 p-1">Save</button>
       </div>
     </div>
