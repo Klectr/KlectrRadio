@@ -1,14 +1,30 @@
 import { navigate } from "kaioken"
 import { Station, useSelectStationStore } from "../hooks/stationStores"
 import { useStationsStore } from "../hooks/stationStores"
+import { writeFile } from "@tauri-apps/api/fs"
+import { useStorageStore } from "../hooks/storageStores"
 
 export default function Main() {
   const { make } = useSelectStationStore()
-  const stations = useStationsStore.getState()
+  const { value, rmStation } = useStationsStore()
+  const { value: storageFile } = useStorageStore()
+  const stations = value
 
   function _handleStationClick(station: Station) {
-    make(station)
-    navigate('/player')
+    return function() {
+      make(station)
+      navigate('/player')
+    }
+  }
+
+  function _handleDeleteClick(s: Station) {
+    return function(ev: MouseEvent) {
+      ev.preventDefault()
+      ev.stopPropagation()
+      const newStations = rmStation(s.id)
+      if (!storageFile) return
+      writeFile(storageFile, JSON.stringify(newStations))
+    }
   }
 
   if (!stations?.length) {
@@ -33,11 +49,11 @@ export default function Main() {
 
       <div className="p-4 flex flex-col align-between h-full gap-2">
         {stations.map((s) => (
-          <button onclick={() => _handleStationClick(s)} className="paper p-2 flex flex-row border gap-4">
+          <button onclick={_handleStationClick(s)} className="paper p-2 flex flex-row border gap-4">
             <img src={s.avatar} width={40} height={40} className="w-20 rounded-xl" />
             <div className="flex flex-col gap-2 w-full">
               <h2 className="text-xl">{s.title}</h2>
-              <button className="border border-red-500 rounded w-full text-red-500 px-4">Delete</button>
+              <button onclick={_handleDeleteClick(s)} className="border border-red-500 rounded w-full text-red-500 px-4 hover:bg-red-500 hover:text-white">Delete</button>
             </div>
           </button>
         ))}

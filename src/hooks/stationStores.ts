@@ -1,4 +1,3 @@
-import { writeTextFile } from "@tauri-apps/api/fs"
 import { createStore } from "kaioken"
 
 export const useStationsStore = createStore(
@@ -13,10 +12,15 @@ export const useStationsStore = createStore(
       //@ts-ignore
       return newState
     },
-    delete: (stationId) =>
-      set(
-        (state) => state?.filter((station) => station.id !== stationId) ?? []
-      ),
+    rmStation: (stationId): Station[] => {
+      let newState: Station[] | null = null
+      set((state) => {
+        newState = state?.filter((station) => station.id !== stationId) ?? []
+        return newState
+      })
+      //@ts-ignore
+      return newState
+    },
     override: (stationsList: Station[]) => {
       set((_state) => stationsList)
     },
