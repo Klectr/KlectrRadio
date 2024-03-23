@@ -7,6 +7,9 @@ Your own personal radio app for Klecting the stations you love
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
+### Contributing
+See our [Contribution Guidelines](/CONTRIBUTING.md)_for how to contribute!
+
 ### Tools to use
 
 [VS Code](https://code.visualstudio.com/) |or| [NeoVim](https://neovim.io/)\
