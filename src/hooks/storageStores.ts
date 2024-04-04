@@ -1,4 +1,9 @@
-import { exists, readTextFile, writeTextFile } from "@tauri-apps/api/fs"
+import {
+  createDir,
+  exists,
+  readTextFile,
+  writeTextFile,
+} from "@tauri-apps/api/fs"
 import { appDataDir } from "@tauri-apps/api/path"
 import { createStore } from "kaioken"
 import { Station } from "../hooks/stationStores"
@@ -10,7 +15,11 @@ export const useStorageStore = createStore(
 
 export function useStorage() {
   async function _createStationsFile(path: string): Promise<Station[]> {
-    await writeTextFile(path, "[]", { append: false })
+    try {
+      await writeTextFile(path, "[]", { append: false })
+    } catch (err) {
+      console.error("CUSTOM ERROR: ", err)
+    }
     return []
   }
 
@@ -22,9 +31,17 @@ export function useStorage() {
       console.error("getStationsFile: ", err)
       return undefined
     }
+
     if (!dir) return undefined
+
+    const dirExists = await exists(dir)
+    if (!dirExists) {
+      await createDir(dir)
+    }
+
     const path = `${dir}stations.json`
-    if (!(await exists(path))) return await _createStationsFile(path)
+    const pathExists = await exists(path)
+    if (!pathExists) return await _createStationsFile(path)
     const jsonString = await readTextFile(path)
     const json = JSON.parse(jsonString) as Station[]
     useStorageStore.setState(() => path)

@@ -21,11 +21,12 @@
         "all": false
       },
       "fs": {
-        "all": false,
+        "all": false, 
+        "createDir": true,
         "readFile": true,
         "writeFile": true,
         "exists": true,
-        "scope": ["$APPDATA/*"]
+        "scope": ["$APPDATA/*", "$HOME/Library/Application Support/com.KlectrRadio.dev"]
       },
         "path": {
           "all": true 
