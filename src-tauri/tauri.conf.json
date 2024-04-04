@@ -36,8 +36,8 @@
         "title": "KlectrRadio",
         "width": 300,
         "height": 600,
-        "decorations": false,
-        "resizable": false
+        "decorations": true,
+        "resizable": true 
       }
     ],
     "security": {
