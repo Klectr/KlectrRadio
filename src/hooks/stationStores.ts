@@ -2,27 +2,20 @@ import { createStore } from "kaioken"
 
 export const useStationsStore = createStore(
   null as Station[] | null,
-  (set) => ({
+  (set, get) => ({
     add: (station: Station): Station[] => {
-      let newState: Station[] | null = null
-      set((state) => {
-        newState = [...(state ?? []), station]
-        return newState
-      })
-      //@ts-ignore
+      let newState: Station[] = [...(get() ?? []), station]
+      set(newState)
       return newState
     },
     rmStation: (stationId): Station[] => {
-      let newState: Station[] | null = null
-      set((state) => {
-        newState = state?.filter((station) => station.id !== stationId) ?? []
-        return newState
-      })
-      //@ts-ignore
+      let newState: Station[] | null =
+        get()?.filter((station) => station.id !== stationId) ?? []
+      set(newState)
       return newState
     },
     override: (stationsList: Station[]) => {
-      set((_state) => stationsList)
+      set(stationsList)
     },
   })
 )
