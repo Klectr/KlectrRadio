@@ -18,7 +18,15 @@
         "open": true
       },
       "window": {
-        "all": false
+        "all": false,
+        "close": true,
+        "hide": true,
+        "show": true,
+        "maximize": true,
+        "minimize": true,
+        "unmaximize": true,
+        "unminimize": true,
+        "startDragging": true
       },
       "fs": {
         "all": false, 
@@ -32,13 +40,16 @@
           "all": true 
         }
     },
+    "macOSPrivateApi": true,
     "windows": [
       {
         "title": "KlectrRadio",
-        "width": 300,
+        "width": 1200,
         "height": 600,
-        "decorations": true,
-        "resizable": true 
+        "decorations": false,
+        "resizable": true,
+        "min-width": 800,
+        "min-height": 600
       }
     ],
     "security": {
