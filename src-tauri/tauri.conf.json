@@ -44,12 +44,12 @@
     "windows": [
       {
         "title": "KlectrRadio",
-        "width": 1200,
+        "width": 800,
         "height": 600,
         "decorations": false,
         "resizable": true,
-        "min-width": 800,
-        "min-height": 600
+        "minWidth": 800,
+        "minHeight": 600
       }
     ],
     "security": {
