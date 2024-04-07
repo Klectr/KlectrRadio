@@ -1,4 +1,4 @@
-function MusicPlayer() {
+export function MusicPlayer() {
   return (
     <div
       id="top"
@@ -65,4 +65,3 @@ function MusicPlayer() {
   )
 }
 
-export default MusicPlayer
