@@ -18,15 +18,7 @@
         "open": true
       },
       "window": {
-        "all": false,
-        "close": true,
-        "hide": true,
-        "show": true,
-        "maximize": true,
-        "minimize": true,
-        "unmaximize": true,
-        "unminimize": true,
-        "startDragging": true
+        "all": false
       },
       "fs": {
         "all": false, 
@@ -46,7 +38,6 @@
         "title": "KlectrRadio",
         "width": 800,
         "height": 600,
-        "decorations": false,
         "resizable": true,
         "minWidth": 800,
         "minHeight": 600

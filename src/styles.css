@@ -9,7 +9,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  @apply bg-gray-100 mt-6;
+  @apply bg-gray-100;
 }
 
 html,
@@ -23,30 +23,4 @@ body {
 
 .paper {
   @apply bg-white rounded-lg;
-}
-
-.titlebar {
-  height: 30px;
-  user-select: none;
-  display: flex;
-  justify-content: flex-start;
-  gap: 8px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 5px;
-  cursor: grab;
-}
-.titlebar-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 15px;
-  height: 15px;
-}
-.titlebar-button:hover {
-  border-radius: 100%;
-  background: #5bbec3;
-  cursor: pointer;
 }
