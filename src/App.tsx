@@ -38,7 +38,7 @@ export function App() {
           <Popular />
           {/* Bottom Section __________*/}
 
-          <div id="bottom" className="flex-1 rounded-xl flex flex-row gap-4 ">
+          <div id="bottom" className="flex-1 rounded-xl flex flex-row gap-4 min-h-0">
             <LocalRadio />
             <RecommendedRadio />
           </div>

@@ -1,6 +1,6 @@
 export function MusicPlayer() {
   return (
-    <div className="flex justify-between p-2 bg-gray-300 flex-[0.5] rounded-xl max-h-[100px] gap-2 items-center">
+    <div className="flex justify-between p-2 bg-gray-300 flex-[0.5] rounded-xl max-h-[100px] gap-2 items-center pb-5">
       <div className="flex gap-2 items-center flex-[0.5]">
         <img
           width={50}
