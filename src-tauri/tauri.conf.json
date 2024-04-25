@@ -32,13 +32,15 @@
           "all": true 
         }
     },
+    "macOSPrivateApi": true,
     "windows": [
       {
         "title": "KlectrRadio",
-        "width": 300,
+        "width": 800,
         "height": 600,
-        "decorations": true,
-        "resizable": true 
+        "resizable": true,
+        "minWidth": 800,
+        "minHeight": 600
       }
     ],
     "security": {
